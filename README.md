@@ -20,6 +20,6 @@ Social Bingo game for in-person mixers. Find people who match the questions and 
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started 12May
 
 Head to **[Part 00: Overview](https://copilot-dev-days.github.io/agent-lab-python/step.html?step=00-overview)** for prerequisites and setup instructions.
