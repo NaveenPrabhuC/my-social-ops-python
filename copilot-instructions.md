@@ -57,6 +57,15 @@ Before committing any changes:
 
 ---
 
+## Design Guide
+
+- Use a polished professional visual language.
+- Favor a clean blue-gray palette with white surfaces, subtle shadows, and restrained accents.
+- Keep spacing generous and typography modern: strong headings, calm body text, clear hierarchy.
+- Design components as self-contained cards or panels with rounded corners and minimal borders.
+- Preserve HTMX flow; avoid unnecessary JavaScript or overly playful animations.
+- Maintain good accessibility: sufficient contrast, clear button labels, and readable font sizes.
+
 ## Resources
 
 - README.md, CONTRIBUTING.md, workshop/, .solutions/
