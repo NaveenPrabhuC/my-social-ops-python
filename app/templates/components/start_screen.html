@@ -30,10 +30,16 @@
                 </div>
 
                 <div class="text-center">
-                    <button hx-post="/start" hx-target="#game-container" hx-swap="outerHTML"
-                        class="btn btn-primary w-full text-lg">
-                        Start Game
-                    </button>
+                    <div class="flex gap-4 justify-center mb-4">
+                        <button hx-post="/start" hx-target="#game-container" hx-swap="outerHTML"
+                            class="btn btn-primary flex-1 text-lg">
+                            Start Game
+                        </button>
+                        <button hx-post="/start/scavenger" hx-target="#game-container" hx-swap="outerHTML"
+                            class="btn btn-secondary flex-1 text-lg">
+                            Start Scavenger Hunt
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

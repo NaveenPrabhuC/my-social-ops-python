@@ -1,0 +1,25 @@
+<div class="space-y-4">
+    <div class="text-center mb-6">
+        <h2 class="text-xl font-semibold text-slate-900 mb-2">Scavenger Hunt</h2>
+        <div class="bg-slate-100 rounded-full h-3 overflow-hidden">
+            <div class="bg-primary h-full transition-all duration-300"
+                style="width: {{ (session.marked_count / session.board_size * 100) if session.board_size > 0 else 0 }}%">
+            </div>
+        </div>
+        <p class="text-sm text-slate-600 mt-2">Progress: {{ session.marked_count }} / {{ session.board_size }}</p>
+    </div>
+
+    <div class="space-y-2 max-h-96 overflow-y-auto">
+        {% for square in session.board %}
+        {% if not square.is_free_space %}
+        <label
+            class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer">
+            <input type="checkbox" {% if square.is_marked %}checked{% endif %} hx-post="/toggle/{{ square.id }}"
+                hx-target="#game-container" hx-swap="outerHTML"
+                class="w-5 h-5 text-primary border-slate-300 rounded focus:ring-primary">
+            <span class="text-slate-700 flex-1">{{ square.text }}</span>
+        </label>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

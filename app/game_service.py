@@ -6,7 +6,7 @@ from app.game_logic import (
     get_winning_square_ids,
     toggle_square,
 )
-from app.models import BingoLine, BingoSquareData, GameState
+from app.models import BingoLine, BingoSquareData, GameMode, GameState
 
 
 @dataclass
@@ -14,6 +14,7 @@ class GameSession:
     """Holds the state for a single game session."""
 
     game_state: GameState = GameState.START
+    mode: GameMode = GameMode.BOARD
     board: list[BingoSquareData] = field(default_factory=list)
     winning_line: BingoLine | None = None
     show_bingo_modal: bool = False
@@ -26,8 +27,17 @@ class GameSession:
     def has_bingo(self) -> bool:
         return self.game_state == GameState.BINGO
 
-    def start_game(self) -> None:
+    @property
+    def marked_count(self) -> int:
+        return sum(1 for sq in self.board if sq.is_marked)
+
+    @property
+    def board_size(self) -> int:
+        return len(self.board)
+
+    def start_game(self, mode: GameMode = GameMode.BOARD) -> None:
         self.board = generate_board()
+        self.mode = mode
         self.winning_line = None
         self.game_state = GameState.PLAYING
         self.show_bingo_modal = False

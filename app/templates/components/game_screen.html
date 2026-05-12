@@ -9,6 +9,9 @@
                 <div class="text-center flex-1">
                     <p class="text-sm uppercase tracking-[0.2em] text-primary mb-1">Social Bingo</p>
                     <h1 class="text-2xl font-bold text-slate-950">Soc Ops</h1>
+                    <p class="text-xs text-slate-500 mt-1">
+                        {% if session.mode == 'scavenger' %}Scavenger Hunt{% else %}Board Mode{% endif %}
+                    </p>
                 </div>
                 <div class="w-16"></div>
             </div>
@@ -29,7 +32,11 @@
 
         <main class="flex-1 flex items-center justify-center p-6">
             <div class="w-full max-w-3xl mx-auto bg-white/95 border border-slate-200 rounded-3xl shadow-xl p-6">
+                {% if session.mode == 'scavenger' %}
+                {% include "components/scavenger_hunt.html" %}
+                {% else %}
                 {% include "components/bingo_board.html" %}
+                {% endif %}
             </div>
         </main>
     </div>
