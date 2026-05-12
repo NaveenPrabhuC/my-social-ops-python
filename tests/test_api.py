@@ -41,6 +41,23 @@ class TestStartGame:
         assert response.text.count('hx-post="/toggle/') == 24  # 24 + 1 free space
 
 
+class TestScavengerHuntMode:
+    def test_home_contains_scavenger_hunt_option(self, client: TestClient):
+        response = client.get("/")
+        assert response.status_code == 200
+        assert "Scavenger Hunt" in response.text
+        assert "Start Scavenger Hunt" in response.text
+
+    def test_scavenger_hunt_start_returns_checkbox_list(self, client: TestClient):
+        client.get("/")
+        response = client.post("/start/scavenger")
+        assert response.status_code == 200
+        assert "Progress" in response.text
+        assert response.text.count('type="checkbox"') >= 24
+        assert "FREE SPACE" not in response.text
+        assert "← Back" in response.text
+
+
 class TestToggleSquare:
     def test_toggle_marks_square(self, client: TestClient):
         client.get("/")
